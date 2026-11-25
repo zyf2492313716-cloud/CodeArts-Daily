@@ -334,3 +334,24 @@ CodeArts-Daily/
 [⭐ Star](https://github.com/L0NE-6/CodeArts-Daily) · [🍴 Fork](https://github.com/L0NE-6/CodeArts-Daily/fork) · L0NE-6 · DAILY SIGNAL
 
 </div>
+
+---
+
+## ⚠️ 本 fork 的改动（2026-11-26）
+
+**活动通道由 `DESKTOP` 改为 `IDE`**。
+
+`/v1/ops/delivery` 按 channel 返回不同活动集合，实测：
+
+| channel | 活动数 | 内容 |
+|---|---|---|
+| `DESKTOP`（上游默认） | 4 | 每日签到100分、新用户4000分、两个学生认证 |
+| `IDE`（本 fork） | 7 | **多出：大赛每日签到礼 1000 分（id=40）、大赛报名礼 2000 分（id=42）、咖啡券抽奖（id=58）** |
+| `WEB` | 7 | 同 IDE |
+| `CLI` | 0 | 空 |
+
+用 `DESKTOP` 会漏掉最大的那笔每日 1000 积分。
+
+**workflow 额外启用了 `schedule`**（上游默认注释掉）：北京时间每天 08:10。
+必填 Secret：`CODEARTS_CREDENTIALS`，格式 `AK|SK` 或单行 JSON。
+

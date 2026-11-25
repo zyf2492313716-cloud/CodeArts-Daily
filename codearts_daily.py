@@ -5,7 +5,7 @@
 
 📌 功能
    CodeArts 每日福利 + 新人注册礼（不是签到，是 ops 交付三步式）：
-   1. GET  {base}/v1/ops/delivery?channel=DESKTOP 读活动列表（只读）
+   1. GET  {base}/v1/ops/delivery?channel=IDE 读活动列表（只读）
    2. POST {base}/v1/ops/claim                   领取 USER_LOGIN / NEW_USER_REGISTER 类活动
    3. POST {base}/v1/ops/confirm                 确认到账
    4. GET  delivery 回读，状态变 CONFIRMED/CONSUMED 才算成功
@@ -67,7 +67,7 @@ except Exception:
     pass
 
 BASE = "https://snap-access.cn-north-4.myhuaweicloud.com"
-OPS_CHANNEL = "DESKTOP"
+OPS_CHANNEL = "IDE"  # IDE 通道比 DESKTOP 多出大赛每日签到礼(id=40)与报名礼(id=42)
 DELIVERY_PATH = "/v1/ops/delivery?channel=" + OPS_CHANNEL
 CLAIM_PATH = "/v1/ops/claim"
 CONFIRM_PATH = "/v1/ops/confirm"

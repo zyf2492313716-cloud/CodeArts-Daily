@@ -1,11 +1,9 @@
 name: CodeArts Daily
 
 on:
-  # 上游仓库默认不跑定时，避免空跑。
-  # fork 后想启用定时：把下面两行取消注释（cron 用 UTC，北京时间 = UTC+8）。
-  # 北京时间 每天 08:40
-  # schedule:
-  #   - cron: "40 0 * * *"
+  schedule:
+    # 北京时间每天 08:10（GitHub cron 用 UTC，北京 = UTC+8）
+    - cron: "10 0 * * *"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  run:
+  checkin:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -33,7 +31,7 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Run CodeArts Daily
+      - name: Claim daily credits
         env:
           CODEARTS_CREDENTIALS: ${{ secrets.CODEARTS_CREDENTIALS }}
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
@@ -42,4 +40,3 @@ jobs:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
         run: python codearts_daily.py
-
